@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif !important;
+
+}
+
+.main {
+  margin-top: 2em;
+  font-family: "Manrope", sans-serif !important;
+
+}
+
+body {
+  background: #f8f9fab4 !important;
+  font-family: "Manrope", sans-serif !important;
+
+
+}
+
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+.div {
+  width: "20%" !important
+}
+
+.header__search input {
+  border: 1px solid #999999b4;
+  border-radius: 10px;
+  stroke: 0.5;
+  font-size: 12.5px !important;
+}
+
+.header__search input:focus {
+  border: 1px solid #999999b4;
+
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 9px;
+  right: 15px;
+  z-index: 1;
+
+  /* You can customize the color */
+  cursor: pointer;
+  /* Additional styles for the heart icon */
+}
+
+.color-option {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.color-selector {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+}
