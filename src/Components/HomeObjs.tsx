@@ -66,7 +66,7 @@ export default function HomeObjs({ category, uuid }: Props) {
           </Flex>
         </Box> */}
       </Flex>
-      <Box
+      {/* <Box
         mt={30}
         w={"100%"}
         display={{ base: "none", lg: "grid", sm: "none", xs: "none" }}
@@ -79,7 +79,7 @@ export default function HomeObjs({ category, uuid }: Props) {
         mt={20}
         mb={20}
         color="#eee"
-      />
+      /> */}
 
       {/* <Box
         mt={30}

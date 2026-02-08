@@ -64,10 +64,10 @@ export default function Details() {
 
   return (
     <Layout>
-      <HomeObjs category={category} />
+      {/* <HomeObjs category={category} /> */}
       <div id="section1"> </div>
 
-      <Flex mt={40} display="flex" gap={10} align="center">
+      <Flex pt={120} display="flex" gap={10} align="center">
         <IconArrowLeft
           size={27}
           style={{ cursor: "pointer" }}
@@ -77,7 +77,7 @@ export default function Details() {
           Product Details
         </Text>
       </Flex>
-      <Box p={30} bg={"white"} pos="relative" mb={200} mt={30}>
+      <Box p={30} pos="relative" mb={200} mt={30}>
         <LoadingOverlay
           overlayBlur={2}
           transitionDuration={500}
@@ -97,9 +97,6 @@ export default function Details() {
                 radius={10}
                 onClick={() => setImgSelect(details?.product_img1)}
                 mb={10}
-                maw={"100%"}
-                width={"100%"}
-                height={60}
                 fit="cover"
                 src={details?.product_img1}
               />
@@ -113,9 +110,6 @@ export default function Details() {
                 radius={10}
                 onClick={() => setImgSelect(details?.product_img2)}
                 mb={10}
-                maw={"100%"}
-                width={"100%"}
-                height={60}
                 fit="cover"
                 src={details?.product_img2}
               />
@@ -129,9 +123,6 @@ export default function Details() {
                 radius={10}
                 mb={10}
                 onClick={() => setImgSelect(details?.product_img3)}
-                maw={"100%"}
-                width={"100%"}
-                height={60}
                 fit="cover"
                 src={details?.product_img3}
               />
@@ -148,8 +139,13 @@ export default function Details() {
               />
             </Center>
           </Grid.Col>
-          <Grid.Col px={{ lg: 30 }} lg={5}>
-            <Box w={"100%"}>
+          <Grid.Col
+            bg={"white"}
+            sx={{ borderRadius: 10 }}
+            px={{ lg: 30 }}
+            lg={5}
+          >
+            <Box mt={20} w={"100%"}>
               <Text size={18} fw="600">
                 {details?.name}
               </Text>
@@ -158,7 +154,7 @@ export default function Details() {
                   defaultValue={details?.rate}
                   size="xs"
                   value={randomValue}
-                  color="dark"
+                  color="teal"
                 />
                 <Text size="xs">({randomValue})</Text>
               </Flex>
@@ -199,9 +195,9 @@ export default function Details() {
                 Description
               </Text>
               <Text
-                sx={{ transition: "linear" }}
+                sx={{ transition: "linear", fontWeight: 550 }}
                 transform="capitalize"
-                size={13.5}
+                size={13}
               >
                 <div
                   dangerouslySetInnerHTML={{
@@ -232,13 +228,12 @@ export default function Details() {
                 )}
               </Text>
             </Box>
-            <Box mb={15} mt={15} w={"100%"}>
-              <Link target="_blank" to={details.checkout_redirect || "#"}>
+            <Box mb={15} mt={70} w={"100%"}>
+              <Link target="_blank" to={"#"}>
                 <Button
                   color="teal.9"
                   size="lg"
                   fullWidth
-                  variant="outline"
                   radius={"lg"}
                   leftIcon={<IconShoppingBag stroke={1.3} size={22} />}
                 >

@@ -43,7 +43,7 @@ function CategorySlider({ uuid }: Props) {
                 align="center"
                 fw="bold"
                 color="gray.7"
-                tt="uppercase"
+                tt="capitalize"
                 size={13.5}
               >
                 {" "}

@@ -33,20 +33,12 @@ export default function ProductCategory() {
 
   const { uid } = useParams();
 
-  const scrollToSection = (id: any) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   useEffect(() => {
     getCategoryProduct({ name: uid });
   }, [uid]);
 
   useEffect(() => {
     setImgSelect(details?.product_img1);
-    scrollToSection("section1");
   }, [uid]);
 
   if (details?.options) {
@@ -57,7 +49,7 @@ export default function ProductCategory() {
     return fetch_cate_products.map((res: any, index: any) => {
       return (
         <Grid.Col key={index} span={6} md={6} lg={3}>
-          <KartCard response={res} index={index} />
+          <KartCard loading={loading} response={res} index={index} />
         </Grid.Col>
       );
     });
@@ -65,15 +57,12 @@ export default function ProductCategory() {
 
   return (
     <Layout>
-      <div id="section1"> </div>
-
       <HomeObjs uuid={uid} category={category} />
 
-      <Flex gap={5} align={"center"} mt={15}>
+      <Flex gap={5} align={"center"} mt={{ base: 40, lg: 100 }}>
         <Text fw="500" size={18}>
           {uid}
         </Text>
-        {loading && <Loader variant="dots" color="pink" size="sm" />}
       </Flex>
       <Transition
         mounted={true}

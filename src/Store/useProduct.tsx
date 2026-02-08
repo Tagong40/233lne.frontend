@@ -8,6 +8,7 @@ type Store = {
   store: {};
   details: any;
   load_details: boolean;
+  loading: boolean;
   getProducts: (args: { pagId?: string }) => void;
   getProductCategoy: () => void;
   productDetails: (args: {
@@ -24,48 +25,67 @@ export const useProduct = create<Store>()(
       (set, get): Store => ({
         product: [],
         details: {},
+        loading: true,
         store: {},
         category: [],
         load_details: false,
         getProducts: async (args) => {
-          await axios
-            .get(`users/store/${storeName}/products`)
-            .then((rs) => {
-              set({
-                product: rs.data?.data || [],
-                store: rs?.data,
-              });
-            })
-            .catch((er) => {
-              if (er.response.data.message === "no request match!") {
-                set({ product: [], category: [], store: {} });
-              }
-            });
+          try {
+            const response = await axios.get(
+              `users/store/${storeName}/products`
+            );
+            set({ product: response.data?.data });
+          } catch (err) {
+          } finally {
+            set({ loading: false });
+          }
+
+          // .then((rs) => {
+          //   set({
+          //     product: rs.data?.data || [],
+          //     store: rs?.data,
+          //   });
+          // })
+          // .catch((er) => {
+          //   if (er.response.data.message === "no request match!") {
+          //     set({ product: [], category: [], store: {} });
+          //   }
+          // });
         },
         getProductCategoy: async () => {
-          await axios
-            .get(`users/store/${storeName}`)
-            .then((rs) => {
-              set({
-                category: rs.data?.category || [],
-                store: rs?.data,
-              });
-            })
-            .catch((er) => {
-              if (er.response.data.message === "no request match!") {
-                set({ product: [], category: [], store: {} });
-              }
-            });
+          // set({ loading: true });
+
+          try {
+            const response = await axios.get(`users/store/${storeName}`);
+            set({ category: response.data.category });
+          } catch (err) {
+          } finally {
+            set({ loading: false });
+          }
+
+          // .then((rs) => {
+          //   set({
+          //     category: rs.data?.category || [],
+          //     store: rs?.data,
+          //   });
+          // })
+          // .catch((er) => {
+          //   if (er.response.data.message === "no request match!") {
+          //     set({ product: [], category: [], store: {} });
+          //   }
+          // });
         },
         productDetails: async ({ uid }) => {
-          const details = get().product.filter(
+          console.log(get().product);
+          const details = get().product.find(
             (res: { productId: string }) => res.productId === uid
-          )[0];
+          );
+          console.log(details);
           set({ details: details });
         },
       }),
       {
-        name: "products-local",
+        name: "products-local2",
         storage: createJSONStorage(() => localStorage),
       }
     )

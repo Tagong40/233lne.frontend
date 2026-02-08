@@ -21,9 +21,8 @@ import { Transition } from "@mantine/core";
 import { useParams } from "react-router-dom";
 
 export default function Home() {
-  const { getProducts, product, category, getProductCategoy } = useProduct(
-    (state) => state
-  );
+  const { getProducts, product, category, getProductCategoy, loading } =
+    useProduct((state) => state);
   const { storeName } = useParams();
 
   useEffect(() => {
@@ -35,36 +34,27 @@ export default function Home() {
     return product.map((res: any, index) => {
       return (
         <Grid.Col key={index} span={6} md={6} lg={3}>
-          <KartCard response={res} index={index} />
+          <KartCard loading={loading} response={res} index={index} />
         </Grid.Col>
       );
     });
   };
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  const scrollToSection = (id: any) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //   }, 1000);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
-    <Layout>
+    <Layout show_carousel={true}>
       <HomeObjs category={category} />
-      <div id="home"> </div>
 
-      <Box mt={15}>
-        <Text fw="500" size={18}>
+      <Box mt={{ base: 40, lg: 15 }}>
+        <Text fw="700" fz={{ base: "xl", lg: 25 }}>
           Store Products
         </Text>
       </Box>

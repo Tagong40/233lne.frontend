@@ -1,11 +1,27 @@
 import React from "react";
-import { List, Text, ThemeIcon } from "@mantine/core";
-import { Container } from "@mantine/core";
-import { Flex } from "@mantine/core";
-import { IconPackage, IconPhone, IconShoppingBag } from "@tabler/icons";
-import { MediaQuery } from "@mantine/core";
+import {
+  Container,
+  Text,
+  Flex,
+  ThemeIcon,
+  MediaQuery,
+  Box,
+  ActionIcon,
+  Indicator,
+  Menu,
+  Button,
+  TextInput,
+} from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../Store/useProduct";
+import {
+  IconPackage,
+  IconPhone,
+  IconSearch,
+  IconShoppingBag,
+  IconShoppingCart,
+} from "@tabler/icons";
+import { HeaderCategory } from "../Components/Category/HeaderCategory";
 
 export function AppHeader() {
   const navigate = useNavigate();
@@ -13,69 +29,91 @@ export function AppHeader() {
 
   return (
     <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-      <Container size="lg">
-        {/* <Button
-            leftIcon={}
-            size="xl"
-            variant="subtle"
-            color="white"
-            compact
-          >
+      <Box
+        sx={(theme) => ({
+          backgroundColor: theme.white,
+          padding: "10px 0",
+        })}
+      >
+        <Container size="xl">
+          <Flex justify="space-between" align="center">
+            {/* Logo */}
+            <Flex sx={{ flex: 0.6 }} gap={10}>
+              <Flex
+                align="center"
+                gap={8}
+                sx={{ cursor: "pointer", flex: 1 }}
+                onClick={() => navigate("/")}
+              >
+                {/* <IconShoppingBag size={24} color="black" /> */}
+                <Text size="xl" weight={700} color="black">
+                  MiniVel Shop
+                </Text>
+              </Flex>
+              <HeaderCategory />
+              <Button color="dark" variant="subtle">
+                About Us
+              </Button>
+              <Button color="dark" variant="subtle">
+                Contact Us
+              </Button>
+            </Flex>
 
-          </Button> */}
-        <Flex
-          sx={{ cursor: "pointer" }}
-          m={0}
-          p={8}
-          onClick={() => navigate("/")}
-          gap={5}
-          align="center"
-          justify={"space-between"}
-        >
-          <Flex gap={5} align="center">
-            <IconShoppingBag color="white" size={27} />
-            <Text color="white" size={21} fw="bold">
-              The MiniVel Shop
-            </Text>
+            {/* Actions */}
+            <Flex gap={32} align="center">
+              <Flex gap={6} align="center" sx={{ cursor: "pointer" }}>
+                {/* <ThemeIcon variant="light" color="pink" size="sm" radius="md">
+                  <IconShoppingBag size={16} />
+                </ThemeIcon>
+                <Text size="sm" color="dimmed" weight={500}>
+                  Get a Store
+                </Text> */}
+                <TextInput
+                  placeholder="Search for products"
+                  variant="filled"
+                  radius={14}
+                  rightSection={<IconSearch size={20} color="gray" />}
+                />
+              </Flex>
+
+              {/* <Flex gap={6} align="center" sx={{ cursor: "pointer" }}>
+                <ThemeIcon variant="light" color="pink" size="sm" radius="md">
+                  <IconPackage size={16} />
+                </ThemeIcon>
+                <Text size="sm" color="dimmed" weight={500}>
+                  Track Shipping
+                </Text>
+              </Flex> */}
+
+              <Flex gap={0} align="center" sx={{ cursor: "pointer" }}>
+                <ActionIcon
+                  variant="transparent"
+                  color="gray.7"
+                  size="md"
+                  radius="md"
+                >
+                  <IconShoppingCart size={23} />
+                </ActionIcon>
+                <Text size="sm" color="dimmed" weight={500}>
+                  Cart
+                </Text>
+              </Flex>
+              {/* <Flex gap={6} align="center" sx={{ cursor: "pointer" }}>
+                <Indicator inline label="0" processing color="teal" size={16}>
+                  <ActionIcon
+                    variant="light"
+                    color="gray"
+                    size="xl"
+                    radius="md"
+                  >
+                    <IconShoppingBag color="black" size={24} />
+                  </ActionIcon>
+                </Indicator>
+              </Flex> */}
+            </Flex>
           </Flex>
-
-          <Flex gap={20} align={"center"}>
-            <Flex gap={2} justify={"center"} align={"center"}>
-              <ThemeIcon color="pink" size={22} radius="md">
-                <IconShoppingBag stroke={1.5} size={18.5} />
-              </ThemeIcon>
-              <Text fw={400} lts={0.5} color="white" size="sm">
-                Get A Store
-              </Text>
-            </Flex>
-            <Flex gap={2} justify={"center"} align={"center"}>
-              <ThemeIcon color="pink" size={22} radius="md">
-                <IconPackage stroke={1.5} size={18.5} />
-              </ThemeIcon>
-              <Text fw={400} lts={0.5} color="white" size="sm">
-                Track Shipping
-              </Text>
-            </Flex>
-            <Flex gap={2} justify={"center"} align={"center"}>
-              <ThemeIcon color="pink" size={22} radius="md">
-                <IconPhone stroke={1.5} size={18.5} />
-              </ThemeIcon>
-              <Text fw={400} lts={0.5} color="white" size="sm">
-                Talk To Us
-              </Text>
-            </Flex>
-          </Flex>
-        </Flex>
-
-        {/*
-                <Group sx={{ height: '100%' }} px={20} position="apart">
-                    <ActionIcon variant="light" color="teal" size={22}>
-                        <IconUser size={16} />
-
-                    </ActionIcon>
-
-                </Group> */}
-      </Container>
+        </Container>
+      </Box>
     </MediaQuery>
   );
 }
